@@ -1,0 +1,22 @@
+{
+  "files": [
+    "src/ts/main.ts"
+  ],
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "allowJs": true,
+    "target": "es6",
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "sourceMap": false,
+    "noImplicitAny": true,
+    "module": "es6",
+    "strictNullChecks": false
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

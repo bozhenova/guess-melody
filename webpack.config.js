@@ -28,14 +28,14 @@ module.exports = {
   context: PATHS.src,
   mode: 'development',
   entry: {
-    main: ['@babel/polyfill', './index.js']
+    main: ['@babel/polyfill', './main.ts']
   },
   output: {
-    filename: '[name].[contenthash].js',
-    path: PATHS.dist
+    filename: '[name].[hash].js',
+    path: PATHS.dist,
   },
   resolve: {
-    extensions: ['.js', '.json']
+    extensions: ['.js', '.json', '.ts', '.scss', '.css']
   },
   devtool: isDev ? 'source-map' : '',
   optimization: optimization(),
@@ -51,7 +51,9 @@ module.exports = {
       },
       chunks: ['main']
     }),
-    new CleanWebpackPlugin(),
+    new CleanWebpackPlugin({
+      cleanAfterEveryBuildPatterns: path.join(process.cwd(), 'dist/*.*')
+    }),
     new CopyWebpackPlugin([
       {
         from: path.resolve(__dirname, 'src/favicon.ico'),
@@ -62,11 +64,61 @@ module.exports = {
       { from: `${PATHS.src}/fonts`, to: `${PATHS.dist}/fonts` }
     ]),
     new MiniCssExtractPlugin({
-      filename: './style.[contenthash].css'
+      filename: './style.[hash].css'
     })
   ],
   module: {
     rules: [
+      {
+        test: /\.tsx$/,
+        exclude: /node_modules/,
+        loader: {
+          loader: 'babel-loder',
+          options: {
+            presets: [
+              '@babel/preset-env'
+            ]
+          }
+        }
+      },
+      {
+        test: /\.tsx?$/,
+        loader: 'awesome-typescript-loader',
+        exclude: /node_modules/
+      },
+      {
+        test: /\.(css|s[ac]ss)$/,
+        use: [
+          isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+
+          {
+            loader: 'css-loader',
+            options: {
+              url: false
+            }
+          },
+          'postcss-loader',
+          'resolve-url-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true
+            }
+          }
+        ]
+      },
+      {
+        test: /\.(woff|woff2|ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: `${PATHS.dist}/fonts`,
+            }
+          }
+        ]
+      },
       {
         test: /\.(png|jpg|svg|gif)$/,
         use: [
@@ -78,45 +130,6 @@ module.exports = {
             }
           },
         ]
-      },
-      {
-        test: /\.(woff|woff2|ttf|eot)$/,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              name: '[name].[ext]',
-              outputPath: `${PATHS.dist}/fonts`
-            }
-          }
-        ]
-      },
-      {
-        test: /\.(css|s[ac]ss)$/,
-        use: [
-          isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
-          {
-            loader: 'css-loader',
-            options: {
-              url: isProd
-            }
-          },
-          'postcss-loader',
-          'resolve-url-loader',
-          'sass-loader',
-        ]
-      },
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: {
-          loader: 'babel-loader',
-          options: {
-            presets: [
-              '@babel/preset-env'
-            ]
-          }
-        }
       }
     ]
   }
