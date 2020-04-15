@@ -28,7 +28,7 @@ module.exports = {
   context: PATHS.src,
   mode: 'development',
   entry: {
-    main: ['@babel/polyfill', './main.ts']
+    main: ['@babel/polyfill', './ts/main.ts']
   },
   output: {
     filename: '[name].[hash].js',
@@ -59,9 +59,7 @@ module.exports = {
         from: path.resolve(__dirname, 'src/favicon.ico'),
         to: path.resolve(__dirname, 'dist')
       },
-      { from: `${PATHS.src}/img`, to: `${PATHS.dist}/img` },
-      { from: `${PATHS.src}/img/sprite`, to: `${PATHS.dist}/img/sprite` },
-      { from: `${PATHS.src}/fonts`, to: `${PATHS.dist}/fonts` }
+      { from: `${PATHS.src}/img`, to: `${PATHS.dist}/img` }
     ]),
     new MiniCssExtractPlugin({
       filename: './style.[hash].css'
