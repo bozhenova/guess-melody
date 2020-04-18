@@ -1,5 +1,7 @@
 type State = { level: number, notes: number, time: number, answers: { result: boolean, time: number, type: string }[] };
 
+type Data = { level: number, lives: number, result: number, answers: { result: boolean, time: number, type: string }[] };
+
 const INITIAL_STATE: State = Object.freeze({
   level: 0,
   notes: 3,
@@ -7,7 +9,7 @@ const INITIAL_STATE: State = Object.freeze({
   answers: []
 });
 
-interface GameData { type: string, question: string, genre?: string, src?: string, answers: { src?: string, genre?: string, image?: { url: string, width: number, height: number }, title?: string, isCorrect?: boolean }[] }[];
+interface GameData { type: string, question: string, genre?: string, src?: string, answers: { src?: string, genre?: string, image?: { url: string, width: number, height: number }, title?: string, isCorrect?: boolean }[] };
 
 
 const LEVELS: GameData[] = [
@@ -110,4 +112,4 @@ const GAME_SETTINGS: Settings = {
 };
 
 
-export { INITIAL_STATE, State, GAME_SETTINGS, Settings, LEVELS, GameData };
+export { INITIAL_STATE, State, GAME_SETTINGS, Settings, LEVELS, GameData, Data };
