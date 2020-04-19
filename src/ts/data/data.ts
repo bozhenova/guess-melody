@@ -1,11 +1,11 @@
-type State = { level: number, notes: number, time: number, answers: { result: boolean, time: number, type: string }[] };
+type State = { level: number, lives: number, time: number, answers: { result: boolean, time: number, type: string }[] };
 
 type Data = { level: number, lives: number, result: number, answers: { result: boolean, time: number, type: string }[] };
 
 const INITIAL_STATE: State = Object.freeze({
   level: 0,
-  notes: 3,
-  time: 30,
+  lives: 3,
+  time: 120,
   answers: []
 });
 
@@ -106,7 +106,7 @@ const GAME_SETTINGS: Settings = {
   dead: -1,
   fail: 0,
   endTime: 0,
-  minTime: 10,
+  minTime: 30,
   maxTime: 120,
   indexStep: 1
 };

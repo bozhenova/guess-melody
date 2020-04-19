@@ -119,7 +119,7 @@ describe(`Counting user's score`, () => {
     ];
     expect(countScore(playerAnswers, 1, GAME_SETTINGS)).to.equal(4);
   });
-  it(`should return 24 points if the player answered 10 questions
+  it(`should return 20 points if the player answered 10 questions
     quickly and made no mistakes`, () => {
     const playerAnswers = [
       {
@@ -173,6 +173,6 @@ describe(`Counting user's score`, () => {
         type: 'fast'
       },
     ];
-    expect(countScore(playerAnswers, 3, GAME_SETTINGS)).to.equal(24);
+    expect(countScore(playerAnswers, 3, GAME_SETTINGS)).to.equal(20);
   });
 });

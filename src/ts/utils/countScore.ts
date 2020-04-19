@@ -2,13 +2,12 @@ import { Settings, State } from '../data/data';
 
 const countScore = (answers: State["answers"], lives: number, settings: Settings) => {
 
-
   if (answers.length < settings.maxLevel) {
-    return settings.fail;
+    return settings.dead;
   }
 
-  if (lives <= settings.dead) {
-    return settings.fail;
+  if (lives === settings.dead) {
+    return settings.dead;
   }
 
   const correctAnswers = answers.filter(answer => answer.result === true);
@@ -24,9 +23,7 @@ const countScore = (answers: State["answers"], lives: number, settings: Settings
     }
   }
 
-
   return score - wrongAnswers.length * settings.wrongAnswerFine;
-
 }
 
 export default countScore;
