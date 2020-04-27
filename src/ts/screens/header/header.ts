@@ -1,5 +1,6 @@
 import AbstractView from "../../abstractView";
-import { INITIAL_STATE, State } from "../../data/data";
+import { INITIAL_STATE, GAME_SETTINGS, State } from "../../data/data";
+import { getRadius } from "../../utils/getRadius";
 
 export default class HeaderView extends AbstractView {
   constructor(public state?: State) {
@@ -21,32 +22,28 @@ export default class HeaderView extends AbstractView {
               filter: url(#blur);
               transform: rotate(-90deg) scaleY(-1);
               transform-origin: center;
+              stroke-dasharray: ${getRadius(this.state.time, GAME_SETTINGS.radius).stroke};
+              stroke-dashoffset: ${getRadius(this.state.time, GAME_SETTINGS.radius).offset};
             "
           ></circle>
 
           <div class="timer-value" xmlns="http://www.w3.org/1999/xhtml">
-            <span class="timer-value-mins">${this.state.time / 60}</span>
+            <span class="timer-value-mins">${Math.trunc(this.state.time / 60)}</span>
             <!--
         -->
             <span class="timer-value-dots">:</span>
             <!--
         -->
-            <span class="timer-value-secs">${this.state.time % 60}</span>
+            <span class="timer-value-secs">${Math.trunc(this.state.time % 60) < 10 ? '0' + Math.trunc(this.state.time % 60) : Math.trunc(this.state.time % 60)}</span>
           </div>
         </svg>
         <div class="main-mistakes">
-          <img
+        ${new Array(this.state.lives).fill(` <img
             class="main-mistake"
             src="img/wrong-answer.png"
             width="35"
             height="49"
-          />
-          <img
-            class="main-mistake"
-            src="img/wrong-answer.png"
-            width="35"
-            height="49"
-          />`
+          />`).join(``)}`
 
   }
 

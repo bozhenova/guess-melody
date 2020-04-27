@@ -1,24 +1,22 @@
 import { expect } from "chai";
 import { getRadius } from '../utils/getRadius';
+import { GAME_SETTINGS } from '../data/data';
 
 describe(`Function should correctly calculate circle length`, () => {
   describe(`Normal cases`, () => {
-    it(`Should return full length and 0 in initial state`, () => {
-      // 2 * 3.14 * 100 = 6.28 * 100 = 628
-      expect(getRadius(1, 100).stroke).to.equal(628);
-      expect(getRadius(1, 100).offset).to.equal(0);
+    it(`Should return 0 in initial state`, () => {
+      expect(getRadius(300, GAME_SETTINGS.radius).stroke).to.equal(2325);
+      expect(getRadius(300, GAME_SETTINGS.radius).offset).to.equal(0);
     });
 
-    it(`Should return 0 and full length in the final state`, () => {
-      // 2 * 3.14 * 100 = 6.28 * 100 = 628
-      expect(getRadius(0, 100).stroke).to.equal(628);
-      expect(getRadius(0, 100).offset).to.equal(628);
+    it(`Should return full length in the final state`, () => {
+      expect(getRadius(0, GAME_SETTINGS.radius).stroke).to.equal(2325);
+      expect(getRadius(0, GAME_SETTINGS.radius).offset).to.equal(2325);
     });
 
-    it(`Offset and length should be equal on a half`, () => {
-      // 2 * 3.14 * 100 / 2 = 3.14 * 100 = 314
-      expect(getRadius(0.5, 100).stroke).to.equal(628);
-      expect(getRadius(0.5, 100).offset).to.equal(314);
+    it(`Offset should be equal to half the length in the middle`, () => {
+      expect(getRadius(150, GAME_SETTINGS.radius).stroke).to.equal(2325);
+      expect(getRadius(150, GAME_SETTINGS.radius).offset).to.equal(1162);
     });
   });
 });
