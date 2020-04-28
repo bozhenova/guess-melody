@@ -3,145 +3,62 @@ type State = { level: number, lives: number, time: number, answers: { result: bo
 type Data = { level: number, lives: number, result: number, answers: { result: boolean, time: number, type: string }[] };
 
 const INITIAL_STATE: State = Object.freeze({
-  level: 0,
+  level: 1,
   lives: 3,
-  time: 120,
+  time: 300,
   answers: []
 });
 
-interface GameData { type: string, question: string, genre?: string, src?: string, answers: { src?: string, genre?: string, image?: { url: string, width: number, height: number }, title?: string, isCorrect?: boolean }[] };
+type GameData = { type: string, song?: { artist: string, src: string }, genre?: string, answers: { picture?: string, artist?: string, src?: string, genre?: string }[] }[];
 
-
-const LEVELS: GameData[] = [
+const QUESTIONS: GameData = [
   {
-    "type": "genre",
-    "question": "Выберите все песни в жанре R'n'B",
-    "genre": "rnb",
+    "type": `artist`,
+    "song": {
+      "artist": `Quincas Moreira`,
+      "src": `https://es31-server.appspot.com/guess-melody/static/music/Blue_Whale.mp3`
+    },
     "answers": [
       {
-        "src": "/path/to/file.mp3",
-        "genre": "rnb"
+        "picture": `https://es31-server.appspot.com/guess-melody/static/artist/Quincas_Moreira.jpg`,
+        "artist": `Quincas Moreira`
       },
       {
-        "src": "/path/to/file.mp3",
-        "genre": "blues"
+        "picture": `https://es31-server.appspot.com/guess-melody/static/artist/Density_n_Time.jpg`,
+        "artist": `Density & Time`
       },
       {
-        "src": "/path/to/file.mp3",
-        "genre": "rock"
-      },
-      {
-        "src": "/path/to/file.mp3",
-        "genre": "rnb"
+        "picture": `https://es31-server.appspot.com/guess-melody/static/artist/Endless_Love.jpg`,
+        "artist": `Endless Love`
       }
     ]
   },
   {
-    "type": "genre",
-    "question": "Выберите все блюзовые песни",
-    "genre": "blues",
+    "type": `genre`,
+    "genre": `reggae`,
     "answers": [
       {
-        "src": "/path/to/file.mp3",
-        "genre": "blues"
+        "src": `https://es31-server.appspot.com/guess-melody/static/music/Addis_Ababa.mp3`,
+        "genre": `reggae`
       },
       {
-        "src": "/path/to/file.mp3",
-        "genre": "pop"
+        "src": `https://es31-server.appspot.com/guess-melody/static/music/Azure.mp3`,
+        "genre": `electronic`
       },
       {
-        "src": "/path/to/file.mp3",
-        "genre": "rock"
+        "src": `https://es31-server.appspot.com/guess-melody/static/music/Whaling_City.mp3`,
+        "genre": `country`
       },
       {
-        "src": "/path/to/file.mp3",
-        "genre": "rnb"
-      }
-    ]
-  },
-  {
-    "type": "artist",
-    "question": "Кто исполняет эту песню?",
-    "src": "path/to/file.mp3",
-    "answers": [
-      {
-        "image": {
-          "url": "http://placehold.it/705x455",
-          "width": 300,
-          "height": 300
-        },
-        "title": "Пелагея",
-        "isCorrect": false
-      },
-      {
-        "image": {
-          "url": "http://placehold.it/705x455",
-          "width": 300,
-          "height": 300
-        },
-        "title": "Краснознамённая дивизия имени моей Бабушки",
-        "isCorrect": false
-      },
-      {
-        "image": {
-          "url": "http://placehold.it/705x455",
-          "width": 300,
-          "height": 300
-        },
-        "title": "Кровосток",
-        "isCorrect": true
+        "src": `https://es31-server.appspot.com/guess-melody/static/music/Skanada.mp3`,
+        "genre": `reggae`
       }
     ]
   }
 ];
 
-const MOCKED_DATA: any[] = [
-  {
-    artist: `Kevin MacLeod`,
-    name: `Long Stroll`,
-    image: `https://yt3.ggpht.com/-fkDeGauT7Co/AAAAAAAAAAI/AAAAAAAAAAA/dkF5ZKkrxRo/s900-c-k-no-mo-rj-c0xffffff/photo.jpg`,
-    src: `https://www.youtube.com/audiolibrary_download?vid=91624fdc22fc54ed`,
-    genre: `Jazz`
-  },
-  {
-    artist: `Jingle Punks`,
-    name: `In the Land of Rhinoplasty`,
-    image: `https://i.vimeocdn.com/portrait/992615_300x300`,
-    src: `https://www.youtube.com/audiolibrary_download?vid=dc3b4dc549becd6b`,
-    genre: `Rock`
-  },
-  {
-    artist: `Audionautix`,
-    name: `Travel Light`,
-    image: `http://4.bp.blogspot.com/-kft9qu5ET6U/VPFUBi9W-MI/AAAAAAAACYM/UxXilXKYwOc/s1600/audionautix%2BHalf%2BSize.jpg`,
-    src: `https://www.youtube.com/audiolibrary_download?vid=a127d9b7de8a17cf`,
-    genre: `Country`
-  },
-  {
-    artist: `Riot`,
-    name: `	Level Plane`,
-    image: `https://i.ytimg.com/vi/jzgM3m8Vp1k/maxresdefault.jpg`,
-    src: `https://www.youtube.com/audiolibrary_download?vid=dfb828f40096184c`,
-    genre: `R&B`
-  },
-  {
-    artist: `Jingle Punks`,
-    name: `Lucky Day`,
-    image: `https://i.vimeocdn.com/portrait/992615_300x300`,
-    src: `https://www.youtube.com/audiolibrary_download?vid=bcbe5be936a32fb1`,
-    genre: `Pop`
-  },
-  {
-    artist: `Quincas Moreira`,
-    name: `Firefly`,
-    image: `http://www.atribuna.com.br/fileadmin/_processed_/csm_Quincas-Moreira-Foto-Divulgacao_76d1a8b00e.jpg`,
-    src: `https://www.youtube.com/audiolibrary_download?vid=79100e44c826e2f7`,
-    genre: `Electronic`
-  }
-];
 
-
-type Settings = { correctAnswerBonus: number, wrongAnswerFine: number, fastAnswerBonus: number, maxLevel: number, interval: number, dead: number, fail: number, endTime: number, minTime: number, maxTime: number, indexStep: number };
+type Settings = { correctAnswerBonus: number, wrongAnswerFine: number, fastAnswerBonus: number, maxLevel: number, interval: number, dead: number, fail: number, endTime: number, minTime: number, maxTime: number, indexStep: number, radius: number };
 
 const GAME_SETTINGS: Settings = {
   correctAnswerBonus: 1,
@@ -152,10 +69,11 @@ const GAME_SETTINGS: Settings = {
   dead: -1,
   fail: 0,
   endTime: 0,
-  minTime: 30,
-  maxTime: 120,
-  indexStep: 1
+  minTime: 10,
+  maxTime: 300,
+  indexStep: 1,
+  radius: 370
 };
 
 
-export { INITIAL_STATE, State, GAME_SETTINGS, Settings, LEVELS, GameData, Data, MOCKED_DATA };
+export { INITIAL_STATE, State, GAME_SETTINGS, Settings, GameData, Data, QUESTIONS };

@@ -14,8 +14,7 @@ export default class LoaderView extends AbstractView {
   get template() {
     return `
     <div class="wrapper">
-      <img src="../../../img/plate.gif" width="${this.settings.width}" height="${this
-        .settings.height}">
+      <img src="./img/plate.gif" width="${this.settings.width}" height="${this.settings.height}">
     </div>
     `;
   }

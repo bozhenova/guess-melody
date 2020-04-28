@@ -12,6 +12,9 @@ export default abstract class AbstractView {
     return this._element;
   }
 
+  set element(value) {
+    this._element = value;
+  }
 
   private render(): HTMLElement {
     const wrapper = document.createElement(`div`);
