@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { getRadius } from '../utils/getRadius';
+import getRadius from '../utils/getRadius';
 import { GAME_SETTINGS } from '../data/data';
 
 describe(`Function should correctly calculate circle length`, () => {

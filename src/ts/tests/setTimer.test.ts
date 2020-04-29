@@ -7,7 +7,7 @@ describe(`Set game timer`, () => {
     const testGame: State = {
       level: 2, lives: 2, time: 120, answers: []
     };
-    expect(setTimer(INITIAL_STATE, GAME_SETTINGS).time).to.equal(300);
+    expect(setTimer(INITIAL_STATE, GAME_SETTINGS).time).to.equal(299);
     expect(setTimer(testGame, GAME_SETTINGS).time).to.equal(119);
   });
 
