@@ -14,3 +14,19 @@
     opacity: 1;
   }
 }
+
+.player-control {
+  height: 22px;
+  width: 16px;
+  background: url("../img/icon-player-controls-sprite.png") no-repeat;
+  background-size: cover;
+  border: none;
+}
+
+.player-control--pause.player-control {
+  background-position: 0 1px;
+}
+
+.player-control--play.player-control {
+  background-position: 0 -22px;
+}

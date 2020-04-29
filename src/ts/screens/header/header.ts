@@ -1,14 +1,15 @@
 import AbstractView from "../../abstractView";
 import { INITIAL_STATE, GAME_SETTINGS, State } from "../../data/data";
-import { getRadius } from "../../utils/getRadius";
+import getRadius from "../../utils/getRadius";
+import getTime from "../../utils/getTime";
 
 export default class HeaderView extends AbstractView {
-  constructor(public state?: State) {
+  constructor(public state: State) {
     super();
   }
 
   get template() {
-    return `<svg
+    return `<header class="header"><svg
           xmlns="http://www.w3.org/2000/svg"
           class="timer"
           viewBox="0 0 780 780"
@@ -28,13 +29,13 @@ export default class HeaderView extends AbstractView {
           ></circle>
 
           <div class="timer-value" xmlns="http://www.w3.org/1999/xhtml">
-            <span class="timer-value-mins">${Math.trunc(this.state.time / 60)}</span>
+            <span class="timer-value-mins">${getTime(this.state.time).mins}</span>
             <!--
         -->
             <span class="timer-value-dots">:</span>
             <!--
         -->
-            <span class="timer-value-secs">${Math.trunc(this.state.time % 60) < 10 ? '0' + Math.trunc(this.state.time % 60) : Math.trunc(this.state.time % 60)}</span>
+            <span class="timer-value-secs">${getTime(this.state.time).secs}</span>
           </div>
         </svg>
         <div class="main-mistakes">
@@ -43,7 +44,8 @@ export default class HeaderView extends AbstractView {
             src="img/wrong-answer.png"
             width="35"
             height="49"
-          />`).join(``)}`
+          />`).join(``)}</div>
+          </header>`
 
   }
 

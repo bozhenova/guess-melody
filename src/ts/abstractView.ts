@@ -1,5 +1,6 @@
 export default abstract class AbstractView {
   private _element: HTMLElement
+
   abstract get template(): string;
 
   get element(): HTMLElement {
@@ -10,10 +11,6 @@ export default abstract class AbstractView {
     this.bind(this._element);
 
     return this._element;
-  }
-
-  set element(value) {
-    this._element = value;
   }
 
   private render(): HTMLElement {

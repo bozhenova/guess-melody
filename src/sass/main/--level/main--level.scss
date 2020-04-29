@@ -65,4 +65,11 @@ $preview-spacing: 11px;
   width: $preview-size;
 }
 
+.main-mistakes {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 150px;
+}
+
 @import "genre";

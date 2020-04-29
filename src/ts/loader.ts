@@ -29,14 +29,14 @@ export default class Loader {
   static saveResults(model: GameModel) {
     const answers: Data["answers"] = model.state.answers;
     const notes: Data["lives"] = model.state.lives;
-    // const result: Data["result"] = model.finalScore;
-    // const serverData = Object.assign({ name }, { answers }, { notes }, { result });
+    const result: Data["result"] = model.finalScore;
+    const serverData = Object.assign({ name }, { answers }, { notes }, { result });
     const postSettings = {
       method: `POST`,
       headers: {
         'Content-Type': `application/json`
       },
-      // body: JSON.stringify(serverData)
+      body: JSON.stringify(serverData)
     };
     return fetch(`${SERVER_URL}/stats/${APP_ID}`, postSettings);
   }
