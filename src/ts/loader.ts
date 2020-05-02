@@ -1,9 +1,9 @@
 import Application from './application';
 import { GameModel } from './gameModel';
-import { Data } from './data/data';
+import { State, GAME_SETTINGS } from './data/data';
 
-const SERVER_URL: string = 'https://es31-server.appspot.com/guess-melody/';
-const APP_ID: string = '910246';
+const SERVER_URL: string = `https://intensive-ecmascript-server-btfgudlkpi.now.sh/guess-melody`;
+const APP_ID: string = '910148';
 
 const checkStatus = (response: Response) => {
   if (response.ok) {
@@ -17,7 +17,7 @@ export default class Loader {
   static async loadData() {
     Application.showLoader();
     try {
-      const response: Response = await fetch(`${SERVER_URL}/questions`);
+      const response: Response = await fetch(`https://es31-server.appspot.com/guess-melody/questions`);
       const data = await checkStatus(response).json();
       Application._gameData = data;
       Application.showWelcome();
@@ -26,11 +26,12 @@ export default class Loader {
     }
   }
 
-  static saveResults(model: GameModel) {
-    const answers: Data["answers"] = model.state.answers;
-    const notes: Data["lives"] = model.state.lives;
-    const result: Data["result"] = model.finalScore;
-    const serverData = Object.assign({ name }, { answers }, { notes }, { result });
+  static async saveResults(model: GameModel) {
+    const answers: State["answers"] = model.state.answers;
+    const lives: State["lives"] = model.state.lives;
+    const time: State["time"] = model.state.time;
+    const result: State["result"] = model.finalScore;
+    const serverData = Object.assign({ answers }, { lives }, { time }, { result });
     const postSettings = {
       method: `POST`,
       headers: {
@@ -38,13 +39,13 @@ export default class Loader {
       },
       body: JSON.stringify(serverData)
     };
-    return fetch(`${SERVER_URL}/stats/${APP_ID}`, postSettings);
+    return await fetch(`${SERVER_URL}/stats/${APP_ID}`, postSettings);
   }
 
   static async loadResults() {
     const response: Response = await fetch(`${SERVER_URL}/stats/${APP_ID}`);
     const data = await checkStatus(response);
-    return data.json();
+    return await data.json();
   }
 }
 

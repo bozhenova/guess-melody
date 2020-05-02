@@ -65,7 +65,35 @@ $preview-spacing: 11px;
   width: $preview-size;
 }
 
-.main-mistakes {
+.game-back {
+  position: relative;
+  right: 10px;
+  top: 30px;
+  z-index: 1;
+  width: 260px;
+}
+.game-back::before {
+  content: "";
+  position: absolute;
+  left: -50px;
+  top: 25px;
+  width: 40px;
+  height: 40px;
+  background-image: url("../../img/right-arrow.svg");
+  background-repeat: no-repeat;
+  background-size: 40px;
+  transform: rotate(180deg);
+}
+
+.game-back:hover {
+  opacity: 0.8;
+}
+.game-back:active,
+.game-back:focus {
+  opacity: 0.6;
+}
+
+.game-mistakes {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
