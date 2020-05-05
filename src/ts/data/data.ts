@@ -1,6 +1,5 @@
-type State = { level: number, lives: number, time: number, answers: { result: boolean, time: number, type: string }[] };
+type State = { level: number, lives: number, time: number, result?: number, answers: { result: boolean, answerTime: number, type: string }[] };
 
-type Data = { level: number, lives: number, result: number, answers: { result: boolean, time: number, type: string }[] };
 
 const INITIAL_STATE: State = Object.freeze({
   level: 1,
@@ -76,4 +75,4 @@ const GAME_SETTINGS: Settings = {
 };
 
 
-export { INITIAL_STATE, State, GAME_SETTINGS, Settings, GameData, Data, QUESTIONS };
+export { INITIAL_STATE, State, GAME_SETTINGS, Settings, GameData, QUESTIONS };

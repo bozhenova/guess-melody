@@ -16,7 +16,7 @@ const countScore = (answers: State["answers"], lives: number, settings: Settings
   let score = 0;
 
   for (const answer of correctAnswers) {
-    if (answer.time < settings.minTime) {
+    if (answer.type === 'fast') {
       score += settings.fastAnswerBonus;
     } else {
       score += settings.correctAnswerBonus;

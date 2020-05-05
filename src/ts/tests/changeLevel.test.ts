@@ -1,25 +1,24 @@
 import changeLevel from "../utils/changeLevel";
-import { INITIAL_STATE, GAME_SETTINGS } from "../data/data";
+import { State } from "../data/data";
 import { expect } from "chai";
 
 describe(`Changing the level`, () => {
   it(`should change the level when the player answered the question`, () => {
+    const gameOne: State = {
+      level: 5,
+      time: 15,
+      lives: 2,
+      answers: [],
+    };
+    const gameTwo: State = {
+      level: 4,
+      time: 20,
+      lives: 1,
+      answers: [],
+    };
     expect(
-      changeLevel(INITIAL_STATE, 0, GAME_SETTINGS.maxLevel).level
-    ).to.equal(1);
+      changeLevel(gameOne).level).to.equal(6);
     expect(
-      changeLevel(INITIAL_STATE, 1, GAME_SETTINGS.maxLevel).level
-    ).to.equal(2);
-    expect(
-      changeLevel(INITIAL_STATE, 2, GAME_SETTINGS.maxLevel).level
-    ).to.equal(3);
-  });
-  it(`should not allow the level to be more than 10`, () => {
-    expect(
-      changeLevel(INITIAL_STATE, 11, GAME_SETTINGS.maxLevel).level
-    ).to.equal(10);
-    expect(
-      changeLevel(INITIAL_STATE, 12, GAME_SETTINGS.maxLevel).level
-    ).to.equal(10);
+      changeLevel(gameTwo).level).to.equal(5);
   });
 });

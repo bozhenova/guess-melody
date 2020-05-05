@@ -12,52 +12,52 @@ describe(`Counting user's score`, () => {
     const playerAnswers = [
       {
         result: true,
-        time: 15,
+        answerTime: 15,
         type: 'correct'
       },
       {
         result: true,
-        time: 15,
+        answerTime: 15,
         type: 'correct'
       },
       {
         result: true,
-        time: 15,
+        answerTime: 15,
         type: 'correct'
       },
       {
         result: true,
-        time: 15,
+        answerTime: 15,
         type: 'correct'
       },
       {
         result: true,
-        time: 15,
+        answerTime: 15,
         type: 'correct'
       },
       {
         result: true,
-        time: 15,
+        answerTime: 15,
         type: 'correct'
       },
       {
         result: true,
-        time: 15,
+        answerTime: 15,
         type: 'correct'
       },
       {
         result: true,
-        time: 15,
+        answerTime: 15,
         type: 'correct'
       },
       {
         result: true,
-        time: 15,
+        answerTime: 15,
         type: 'correct'
       },
       {
         result: true,
-        time: 15,
+        answerTime: 15,
         type: 'correct'
       },
     ];
@@ -68,52 +68,52 @@ describe(`Counting user's score`, () => {
     const playerAnswers = [
       {
         result: false,
-        time: 15,
+        answerTime: 15,
         type: 'wrong'
       },
       {
         result: false,
-        time: 15,
+        answerTime: 15,
         type: 'wrong'
       },
       {
         result: true,
-        time: 15,
+        answerTime: 15,
         type: 'correct'
       },
       {
         result: true,
-        time: 15,
+        answerTime: 15,
         type: 'correct'
       },
       {
         result: true,
-        time: 15,
+        answerTime: 15,
         type: 'correct'
       },
       {
         result: true,
-        time: 15,
+        answerTime: 15,
         type: 'correct'
       },
       {
         result: true,
-        time: 15,
+        answerTime: 15,
         type: 'correct'
       },
       {
         result: true,
-        time: 15,
+        answerTime: 15,
         type: 'correct'
       },
       {
         result: true,
-        time: 15,
+        answerTime: 15,
         type: 'correct'
       },
       {
         result: true,
-        time: 15,
+        answerTime: 15,
         type: 'correct'
       },
     ];
@@ -124,52 +124,52 @@ describe(`Counting user's score`, () => {
     const playerAnswers = [
       {
         result: true,
-        time: 9,
+        answerTime: 9,
         type: 'fast'
       },
       {
         result: true,
-        time: 9,
+        answerTime: 9,
         type: 'fast'
       },
       {
         result: true,
-        time: 9,
+        answerTime: 9,
         type: 'fast'
       },
       {
         result: true,
-        time: 9,
+        answerTime: 9,
         type: 'fast'
       },
       {
         result: true,
-        time: 9,
+        answerTime: 9,
         type: 'fast'
       },
       {
         result: true,
-        time: 9,
+        answerTime: 9,
         type: 'fast'
       },
       {
         result: true,
-        time: 9,
+        answerTime: 9,
         type: 'fast'
       },
       {
         result: true,
-        time: 9,
+        answerTime: 9,
         type: 'fast'
       },
       {
         result: true,
-        time: 9,
+        answerTime: 9,
         type: 'fast'
       },
       {
         result: true,
-        time: 9,
+        answerTime: 9,
         type: 'fast'
       },
     ];

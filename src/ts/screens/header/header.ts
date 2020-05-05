@@ -1,19 +1,24 @@
 import AbstractView from "../../abstractView";
-import { INITIAL_STATE, GAME_SETTINGS, State } from "../../data/data";
+import { GAME_SETTINGS, State } from "../../data/data";
 import getRadius from "../../utils/getRadius";
 import getTime from "../../utils/getTime";
+import changeTimeColor from "../../utils/changeTimeColor"
 
 export default class HeaderView extends AbstractView {
-  constructor(public state: State) {
+  constructor(public state?: State) {
     super();
   }
 
   get template() {
-    return `<header class="header"><svg
+    return `<header class="header">
+          <a class="game-back" href="#">
+            <span class="visually-hidden">Сыграть ещё раз</span>
+            <img class="game-logo" src="img/melody-logo-ginger.png" alt="Угадай мелодию">
+          </a>
+          <svg
           xmlns="http://www.w3.org/2000/svg"
           class="timer"
-          viewBox="0 0 780 780"
-        >
+          viewBox="0 0 780 780">
           <circle
             cx="390"
             cy="390"
@@ -28,7 +33,7 @@ export default class HeaderView extends AbstractView {
             "
           ></circle>
 
-          <div class="timer-value" xmlns="http://www.w3.org/1999/xhtml">
+          <div class="timer-value ${changeTimeColor(this.state.time)}" xmlns="http://www.w3.org/1999/xhtml">
             <span class="timer-value-mins">${getTime(this.state.time).mins}</span>
             <!--
         -->
@@ -38,15 +43,26 @@ export default class HeaderView extends AbstractView {
             <span class="timer-value-secs">${getTime(this.state.time).secs}</span>
           </div>
         </svg>
-        <div class="main-mistakes">
+        <div class="game-mistakes">
         ${new Array(this.state.lives).fill(` <img
-            class="main-mistake"
+            class="game-mistake"
             src="img/wrong-answer.png"
             width="35"
             height="49"
           />`).join(``)}</div>
           </header>`
 
+  }
+
+  onBackButtonClick() { }
+
+  bind() {
+    const backButton = this.element.querySelector(`.game-back`);
+
+    backButton.addEventListener(`click`, (e) => {
+      e.preventDefault();
+      this.onBackButtonClick();
+    });
   }
 
 }

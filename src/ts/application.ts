@@ -12,7 +12,7 @@ const mainContent = document.querySelector(`.main`);
 const renderScreen = (screenElement: HTMLElement, header?: HTMLElement) => {
   mainContent.innerHTML = ``;
   header && mainContent.before(header);
-  mainContent.append(screenElement);
+  mainContent.appendChild(screenElement);
 };
 
 const clearHeader = (): void => {

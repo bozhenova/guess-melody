@@ -1,8 +1,8 @@
 import { State } from '../data/data';
 
-const changeLevel = (game: State, levelNumber: number, maxLevel: number) => {
+const changeLevel = (game: State) => {
 
-  return { ...game, level: (levelNumber >= maxLevel) ? maxLevel : ++levelNumber };
+  return { ...game, level: ++game.level };
 };
 
 export default changeLevel;
