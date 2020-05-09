@@ -21,8 +21,7 @@ export class GameModel {
   }
 
   restart(): void {
-    const answers: object[] = [];
-    this._state = Object.assign({}, INITIAL_STATE, { answers });
+    this._state = { ...INITIAL_STATE };
   }
 
   loseLife(): void {
@@ -34,11 +33,11 @@ export class GameModel {
   }
 
   isLastLevel(): boolean {
-    return changeLevel(this.state, this.state.level, GAME_SETTINGS.maxLevel).level === GAME_SETTINGS.maxLevel + 1;
+    return this.state.level === GAME_SETTINGS.maxLevel;
   }
 
   getNextLevel(): void {
-    this._state = changeLevel(this.state, this.state.level, GAME_SETTINGS.maxLevel);
+    this._state = changeLevel(this.state);
   }
 
   tick(): void {
@@ -46,12 +45,11 @@ export class GameModel {
   }
 
   resetTimer(): void {
-    const time: number = INITIAL_STATE.time;
-    this._state = Object.assign({}, this.state, { time });
+    this._state = { ...this.state, time: INITIAL_STATE.time };
   }
 
-  updateScore(condition: boolean): void {
-    const answer: Answer = condition ? new Answer(true, this.state) : new Answer(false, this.state);
+  updateScore(condition: boolean, answerTime: number): void {
+    const answer: Answer = condition ? new Answer(true, answerTime) : new Answer(false, answerTime);
     answer.countSpeedType();
     this.state.answers.push(answer);
   }
