@@ -1,7 +1,5 @@
 {
-  "files": [
-    "src/ts/main.ts"
-  ],
+  "files": ["src/ts/main.ts"],
   "compilerOptions": {
     "outDir": "./dist/",
     "allowJs": true,
@@ -13,10 +11,6 @@
     "module": "commonjs",
     "strictNullChecks": false
   },
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
 }
