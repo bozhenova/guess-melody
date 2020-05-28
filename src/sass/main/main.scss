@@ -1,7 +1,3 @@
-/*
- * Разметка главного блока:
- */
-
 .main {
   align-items: center;
   box-sizing: border-box;
@@ -21,7 +17,7 @@
 }
 
 .logo {
-  background: url("../img/melody-logo.png") center no-repeat;
+  background: url('../img/melody-logo.png') center no-repeat;
   height: 83px;
   left: 50%;
   margin-top: 170px;
@@ -46,8 +42,3 @@
   font: 300 0.9em $font;
   margin: 0 0 1em;
 }
-
-@import "--level/main--level";
-@import "--result/main--result";
-@import "--welcome/main--welcome";
-@import "timer";

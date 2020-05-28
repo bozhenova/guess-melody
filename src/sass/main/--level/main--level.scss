@@ -73,13 +73,13 @@ $preview-spacing: 11px;
   width: 260px;
 }
 .game-back::before {
-  content: "";
+  content: '';
   position: absolute;
   left: -50px;
   top: 25px;
   width: 40px;
   height: 40px;
-  background-image: url("../../img/right-arrow.svg");
+  background-image: url('../../img/right-arrow.svg');
   background-repeat: no-repeat;
   background-size: 40px;
   transform: rotate(180deg);
@@ -99,5 +99,3 @@ $preview-spacing: 11px;
   transform: translateX(-50%);
   top: 150px;
 }
-
-@import "genre";

@@ -1,2 +1,8 @@
-@import "common";
-@import "main/main";
+@import 'common';
+@import 'main/main';
+@import 'main/--level/main--level';
+@import 'main/--level/genre';
+@import 'main/--result/main--result';
+@import 'main/--welcome/main--welcome';
+@import 'main/timer';
+@import 'player/player';
