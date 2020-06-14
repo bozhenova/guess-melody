@@ -16,16 +16,20 @@ export class GameModel {
     return this._state;
   }
 
+  set state(data) {
+    this._state = data;
+  }
+
   get finalScore() {
     return countScore(this.state.answers, this.state.lives, GAME_SETTINGS);
   }
 
   restart(): void {
-    this._state = { ...INITIAL_STATE };
+    this.state = { ...INITIAL_STATE };
   }
 
   loseLife(): void {
-    this._state = loseLife(this.state);
+    this.state = loseLife(this.state);
   }
 
   isDead(): boolean {
@@ -37,15 +41,15 @@ export class GameModel {
   }
 
   getNextLevel(): void {
-    this._state = changeLevel(this.state);
+    this.state = changeLevel(this.state);
   }
 
   tick(): void {
-    this._state = setTimer(this.state, GAME_SETTINGS);
+    this.state = setTimer(this.state, GAME_SETTINGS);
   }
 
   resetTimer(): void {
-    this._state = { ...this.state, time: INITIAL_STATE.time };
+    this.state = { ...this.state, time: INITIAL_STATE.time };
   }
 
   updateScore(condition: boolean, answerTime: number): void {

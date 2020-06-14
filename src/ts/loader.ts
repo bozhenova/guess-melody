@@ -19,7 +19,7 @@ export default class Loader {
     try {
       const response: Response = await fetch(`https://es31-server.appspot.com/guess-melody/questions`);
       const data = await checkStatus(response).json();
-      Application._gameData = data;
+      Application.gameData = data;
       Application.showWelcome();
     } catch (e) {
       throw new Error(`${e.message}`);
